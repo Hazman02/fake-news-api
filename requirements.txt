@@ -1,9 +1,9 @@
 fastapi
 uvicorn
-joblib
 xgboost
-malaya
+joblib
 pytesseract
 Pillow
+malaya
 numpy
-torch --extra-index-url https://download.pytorch.org/whl/cpu
+torch --extra-index-url https://download.pytorch.org/whl/cp
