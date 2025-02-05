@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fake News Detector</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 50px;
+            background-color: #f9f9f9;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            margin-top: 20px;
+        }
+        input[type="text"],
+        input[type="file"] {
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        button {
+            padding: 10px;
+            color: #ffffff;
+            background: #007BFF;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            background: #e9ecef;
+            border-left: 4px solid #007BFF;
+        }
+        .error {
+            margin-top: 20px;
+            padding: 15px;
+            background: #f8d7da;
+            border-left: 4px solid #dc3545;
+        }
+        .result strong, .error strong {
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Fake News Detector</h1>
+
+        <!-- Form for text input -->
+        <form method="POST" action="/predict">
+            <label for="headline"><strong>Enter a Headline:</strong></label>
+            <input type="text" id="headline" name="headline" placeholder="Type your news headline here..." required>
+            <button type="submit">Predict</button>
+        </form>
+
+        <!-- Form for image upload -->
+        <form method="POST" action="/predict_from_image" enctype="multipart/form-data">
+            <label for="file"><strong>Upload an Image:</strong></label>
+            <input type="file" id="file" name="file" accept="image/*" required>
+            <button type="submit">Predict from Image</button>
+        </form>
+
+        {% if prediction %}
+        <div class="result">
+            <p><strong>Headline / Extracted Text:</strong> {{ headline }}</p>
+            <p><strong>Prediction:</strong> {{ prediction }}</p>
+            <p><strong>Fake News Probability:</strong> {{ fake_probability }}</p>
+            <p><strong>Real News Probability:</strong> {{ real_probability }}</p>
+        </div>
+        {% endif %}
+
+        {% if error %}
+        <div class="error">
+            <p><strong>Error:</strong> {{ error }}</p>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
