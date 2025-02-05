@@ -1,0 +1,8 @@
+fastapi
+uvicorn
+joblib
+xgboost
+malaya
+pytesseract
+Pillow
+numpy
