@@ -18,7 +18,8 @@ app = FastAPI()
 templates = Jinja2Templates(directory="templates")
 
 # Load the trained XGBoost model
-model = joblib.load('xgboost_fake_news_model.pkl')
+model = xgb.Booster()
+model.load_model("xgboost_fake_news_model.json")
 
 # Load the Malaya Word2Vec vocab and vector
 vocab, vector = malaya.wordvector.load('combine')

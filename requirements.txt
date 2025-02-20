@@ -6,4 +6,5 @@ pytesseract
 Pillow
 malaya
 numpy
+beautifulsoup4
 torch --extra-index-url https://download.pytorch.org/whl/cp
