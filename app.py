@@ -24,7 +24,7 @@ model = joblib.load('xgboost_fake_news_model.pkl')
 vocab, vector = malaya.wordvector.load('combine')
 
 # If on Windows, ensure Tesseract path is correct
-# pytesseract.pytesseract.tesseract_cmd = r"C:\Program Files\Tesseract-OCR\tesseract.exe"
+pytesseract.pytesseract.tesseract_cmd = r"C:\Program Files\Tesseract-OCR\tesseract.exe"
 
 # Function to preprocess text
 def preprocess_text(text):
