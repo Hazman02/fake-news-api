@@ -1,26 +1,24 @@
-# Use an official minimal Python base image
+# Use a minimal Python base image
 FROM python:3.9-slim
 
-# Install system dependencies including Tesseract
+# Install system dependencies (Tesseract for OCR)
 RUN apt-get update && apt-get install -y \
     tesseract-ocr \
     libtesseract-dev \
     && rm -rf /var/lib/apt/lists/*
 
-# Set a working directory
+# Set the working directory
 WORKDIR /app
 
-# Copy requirements
-COPY requirements.txt /app
-
-# Install Python dependencies
+# Copy and install dependencies first (for better Docker caching)
+COPY requirements.txt /app/
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy the rest of your code
+# Copy the rest of the application code
 COPY . /app
 
-# Expose port 8000 (not strictly necessary, but good practice)
+# Expose the port (good practice)
 EXPOSE 8000
 
-# Final command to run your FastAPI app using the Railway dynamic port
-CMD ["sh", "-c", "uvicorn app:app --reload"]
+# Start FastAPI with the correct host and port for Railway
+CMD ["sh", "-c", "uvicorn app:app --host 0.0.0.0 --port ${PORT}"]
