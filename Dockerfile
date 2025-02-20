@@ -23,4 +23,4 @@ COPY . /app
 EXPOSE 8000
 
 # Final command to run your FastAPI app using the Railway dynamic port
-CMD ["sh", "-c", "uvicorn app:app --host 0.0.0.0 --port ${PORT:-8000}"]
+CMD ["sh", "-c", "uvicorn app:app --reload"]
