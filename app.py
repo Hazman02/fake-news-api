@@ -22,7 +22,7 @@ model = xgb.Booster()
 model.load_model("xgboost_fake_news_model.json")
 
 # Load the Malaya Word2Vec vocab and vector
-vocab, vector = malaya.wordvector.load('combine')
+vocab, vector = malaya.wordvector.load('news')
 
 # If on Windows, ensure Tesseract path is correct
 pytesseract.pytesseract.tesseract_cmd = r"C:\Program Files\Tesseract-OCR\tesseract.exe"
